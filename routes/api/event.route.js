@@ -9,7 +9,7 @@ var EventController = require('../../controllers/event.controller');
 // Map each API to the Controller FUnctions
 router.get('/', EventController.getEvents);
 
-router.post('/by', EventController.getEventsBy);
+router.get('/by/:userId', EventController.getEventsBy);
 
 router.post('/', EventController.createEvent);
 
