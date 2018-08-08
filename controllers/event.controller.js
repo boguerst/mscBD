@@ -22,6 +22,27 @@ exports.getEvents = async function(req, res, next){
     }
 };
 
+// Async Controller function to get the To do List
+exports.getEventsBy = async function(req, res, next){
+    // Check the existence of the query parameters, If the exists doesn't exists assign a default value
+    var page = req.query.page ? req.query.page : 1;
+    var limit = req.query.limit ? req.query.limit : 10; 
+
+    try{
+        var params = {};
+        if(req.body.by) 
+            params[by] = req.body.by;
+        var events = await EventService.getEvents(params, page, limit);
+        
+        // Return the events list with the appropriate HTTP Status Code and Message.
+        return res.json(events.docs);
+        // return res.status(200).json({status: 200, data: events.docs, message: "Succesfully Events Recieved"});
+    }catch(e){
+        //Return an Error Response Message with Code and the Error Message.
+        return res.status(400).json(e.message);
+    }
+};
+
 exports.createEvent = async function(req, res, next){
     // Req.Body contains the form submit values.
     var event = {
