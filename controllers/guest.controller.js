@@ -60,11 +60,12 @@ exports.updateGuest = async function(req, res, next){
     var guest = {
         id,
         name: req.body.name || null,
-        surface: req.body.surface || null,
-        volume: req.body.volume || null,
-        shape: req.body.shape || null,
+        firstName: req.body.firstName || null,
+        position: req.body.position || null,
+        phoneNumber: req.body.phoneNumber || null,
+        email: req.body.email || null,
         address: req.body.address || null,
-        phoneNumber: req.body.phoneNumber || null
+        comment: req.body.comment || null
     };
 
     try{
