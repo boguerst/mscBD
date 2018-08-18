@@ -10,7 +10,7 @@ exports.getEvents = async function(req, res, next){
     var page = req.query.page ? req.query.page : 1;
     var limit = req.query.limit ? req.query.limit : 10; 
 
-    try{
+    try{	console.log("all");
         var events = await EventService.getEvents({}, page, limit);
         
         // Return the events list with the appropriate HTTP Status Code and Message.
@@ -30,8 +30,11 @@ exports.getEventsBy = async function(req, res, next){
 
     try{
         var params = {};
-        if(req.params.userId) 
-            params[by] = req.params.userId;
+        if(req.params.ownerId)
+            params.owner = req.params.ownerId;
+        if(req.params.byId)
+            params.by = req.params.byId;
+	console.log("owner : " + req.params.ownerId);
         var events = await EventService.getEvents(params, page, limit);
         
         // Return the events list with the appropriate HTTP Status Code and Message.

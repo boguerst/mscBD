@@ -8,6 +8,7 @@ var EventSchema = new mongoose.Schema({
     endDate: String,
     guestNumber: Number,
     by: String,
+    owner: String,
     where: String,
     creationDate: Date,
     bookerEmail: String
