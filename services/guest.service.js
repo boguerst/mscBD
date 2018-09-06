@@ -56,7 +56,6 @@ exports.updateGuest = async function(guest){
     try{
         //Find the old Guest Object by the Id
         var oldGuest = await Guest.findById(guest._id);
-        return oldGuest;
     }catch(e){
         throw Error("Error occured while Finding the Guest");
     }
@@ -64,14 +63,17 @@ exports.updateGuest = async function(guest){
     // If no old Guest Object exists return false
     if(!oldGuest){
         return false;
-    }
+    }console.log("____"+guest.loc);
 
     //Edit the Guest Object
-    oldGuest.name = guest.name;
+    /*oldGuest.name = guest.name;
     oldGuest.firstName = guest.firstName;
-    oldGuest.evtId = guest.evtId;
+    oldGuest.evtId = guest.evtId;*/
     try{
-        var savedGuest = await oldGuest.save();
+	var updatedGuest = new Guest(guest);
+console.log("____"+guest.loc);console.log("____"+guest.seat);console.log("____"+guest.table);console.log("____"+guest.name);
+        var savedGuest = await updatedGuest.save();
+console.log("____"+guest._id);
         return savedGuest;
     }catch(e){
         throw Error("And Error occured while updating the Guest");

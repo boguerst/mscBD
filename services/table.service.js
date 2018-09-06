@@ -14,9 +14,9 @@ exports.getTables = async function(query, page, limit){
     
     // Try Catch the awaited promise to handle the error 
     try {
-        var Tables = await Table.paginate(query, options);
+        var tables = await Table.paginate(query, options);
         // Return the Table list that was retured by the mongoose promise
-        return Tables;
+        return tables;
     } catch (e) {
         // return a Error message describing the reason 
         throw Error('Error while Paginating Tables');
@@ -34,16 +34,17 @@ exports.getTable = async function(id){
     }
 };
 
-exports.createTable = async function(Table){
+exports.createTable = async function(table){
     // Creating a new Mongoose Object by using the new keyword
-    var newTable = new Table({
-        roomId: Table.roomId,
-        key: Table.key,
-        category: Table.category,
-        name: Table.name,
-        guests: Table.guests,
-        loc: Table.loc
-    });
+    var newTable = new Table(table);
+    /*{
+        roomId: table.roomId,
+        key: table.key,
+        category: table.category,
+        name: table.name,
+        guests: table.guests,
+        loc: table.loc
+    });*/
 
     try{
         // Saving the Table 
@@ -55,10 +56,10 @@ exports.createTable = async function(Table){
     }
 };
 
-exports.updateTable = async function(Table){
+exports.updateTable = async function(table){
     try{
         //Find the old Table Object by the Id
-        var oldTable = await Table.findById(Table._id);
+        var oldTable = await Table.findById(table._id);
         return oldTable;
     }catch(e){
         throw Error("Error occured while Finding the Table");
@@ -70,17 +71,17 @@ exports.updateTable = async function(Table){
     }
 
     //Edit the Table Object
-    oldTable.roomId = Table.roomId;
-    oldTable.key = Table.key;
-    oldTable.category = Table.category;
-    oldTable.name = Table.name;
-    oldTable.guests = Table.guests;
-    oldTable.loc = Table.loc;
+    oldTable.roomId = table.roomId;
+    oldTable.key = table.key;
+    oldTable.category = table.category;
+    oldTable.name = table.name;
+    oldTable.guests = table.guests;
+    oldTable.loc = table.loc;
     try{
         var savedTable = await oldTable.save();
         return savedTable;
     }catch(e){
-        throw Error("And Error occured while updating the Table");
+        throw Error("And Error occured while updating the table");
     }
 };
 
