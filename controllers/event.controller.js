@@ -81,6 +81,7 @@ exports.updateEvent = async function(req, res, next){
         endDate: req.body.endDate || null,
         guestNumber: req.body.guestNumber || null,
         by: req.body.by || null,
+        owner: req.body.owner || null,
         where: req.body.where || null,
         bookerEmail: req.body.bookerEmail || null
     };

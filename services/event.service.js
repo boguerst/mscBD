@@ -65,6 +65,7 @@ exports.updateEvent = async function(event){
     oldEvent.endDate = event.endDate || oldEvent.endDate;
     oldEvent.guestNumber = event.guestNumber || oldEvent.guestNumber;
     oldEvent.by = event.by || oldEvent.by;
+    oldEvent.owner = event.owner || oldEvent.owner;
     oldEvent.where = event.where || oldEvent.where;
     oldEvent.bookerEmail = event.bookerEmail || oldEvent.bookerEmail;
     try{

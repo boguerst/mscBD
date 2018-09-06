@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var mongoosePaginate = require('mongoose-paginate');
 
 var GuestSchema = new mongoose.Schema({
+    title: String,
     name: String,
     firstName: String,
     phoneNumber: String,

@@ -36,12 +36,12 @@ exports.getGuest = async function(id){
 
 exports.createGuest = async function(guest){
     // Creating a new Mongoose Object by using the new keyword
-    var newGuest = new Guest({
+    var newGuest = new Guest(guest);
+    /*{
         name: guest.name,
         firstName: guest.firstName,
         evtId: guest.evtId
-    });
-
+    }*/
     try{
         // Saving the Guest 
         var savedGuest = await newGuest.save();
