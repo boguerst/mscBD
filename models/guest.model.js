@@ -4,12 +4,14 @@ var mongoosePaginate = require('mongoose-paginate');
 var GuestSchema = new mongoose.Schema({
     name: String,
     firstName: String,
-    evtId: String,
-    position: String,
     phoneNumber: String,
     email: String,
     address: String,
-    comment: String
+    comment: String,
+    evtId: String,
+    table: String,
+    seat: String,
+    loc: String
 });
 
 GuestSchema.plugin(mongoosePaginate);

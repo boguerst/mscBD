@@ -57,7 +57,7 @@ exports.updateGuest = async function(req, res, next){
     }
 
     var id = req.body._id;
-    var guest = {
+    /*var guest = {
         id,
         name: req.body.name || null,
         firstName: req.body.firstName || null,
@@ -66,7 +66,8 @@ exports.updateGuest = async function(req, res, next){
         email: req.body.email || null,
         address: req.body.address || null,
         comment: req.body.comment || null
-    };
+    };*/
+    var guest = req.body;
 
     try{
         var updatedGuest = await GuestService.updateGuest(guest);

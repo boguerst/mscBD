@@ -38,14 +38,15 @@ exports.getRoom = async function(req, res, next){
 
 exports.createRoom = async function(req, res, next){
     // Req.Body contains the form submit values.
-    var room = {
+    /*var room = {
         name: req.body.name,
         surface: req.body.surface,
         volume: req.body.volume,
         shape: req.body.shape,
         address: req.body.address,
         phoneNumber: req.body.phoneNumber
-    };
+    };*/
+    var room = req.body;
 
     try{
         // Calling the Service function with the new object from the Request Body
@@ -63,7 +64,7 @@ exports.updateRoom = async function(req, res, next){
         return res.status(400).json("Id must be present");
     }
 
-    var id = req.body._id;
+    /*var id = req.body._id;
     var room = {
         id,
         name: req.body.name || null,
@@ -72,7 +73,8 @@ exports.updateRoom = async function(req, res, next){
         shape: req.body.shape || null,
         address: req.body.address || null,
         phoneNumber: req.body.phoneNumber || null
-    };
+    };*/
+    var room = req.body;
 
     try{
         var updatedRoom = await RoomService.updateRoom(room);
