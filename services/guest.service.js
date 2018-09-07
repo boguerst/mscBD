@@ -14,9 +14,7 @@ exports.getGuests = async function(query, page, limit){
     
     // Try Catch the awaited promise to handle the error 
     try {
-        var guests = await Guest.paginate(query, options);
-        // Return the guest list that was retured by the mongoose promise
-        return guests;
+        return await Guest.paginate(query, options);
     } catch (e) {
         // return a Error message describing the reason 
         throw Error('Error while Paginating Guests');
@@ -44,8 +42,7 @@ exports.createGuest = async function(guest){
     }*/
     try{
         // Saving the Guest 
-        var savedGuest = await newGuest.save();
-        return savedGuest;
+        return await newGuest.save();
     }catch(e){
         // return a Error message describing the reason     
         throw Error("Error while Creating Guest")
@@ -63,18 +60,11 @@ exports.updateGuest = async function(guest){
     // If no old Guest Object exists return false
     if(!oldGuest){
         return false;
-    }console.log("____"+guest.loc);
+    }
 
-    //Edit the Guest Object
-    /*oldGuest.name = guest.name;
-    oldGuest.firstName = guest.firstName;
-    oldGuest.evtId = guest.evtId;*/
     try{
-	var updatedGuest = new Guest(guest);
-console.log("____"+guest.loc);console.log("____"+guest.seat);console.log("____"+guest.table);console.log("____"+guest.name);
-        var savedGuest = await updatedGuest.save();
-console.log("____"+guest._id);
-        return savedGuest;
+	var updatedGuest = new Guest(guest)
+	return await Guest.update({_id: guest._id}, updatedGuest, {upsert:true});
     }catch(e){
         throw Error("And Error occured while updating the Guest");
     }
