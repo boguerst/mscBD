@@ -11,7 +11,7 @@ router.get('/', TableController.getTables);
 
 router.get('/:id', TableController.getTable);
 
-router.get('/event/:evtId?', TableController.getTableBy);
+router.get('/event/:evtId?', TableController.getTablesBy);
 
 router.post('/', TableController.createTable);
 
