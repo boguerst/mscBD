@@ -10,7 +10,7 @@ exports.getEvents = async function(req, res, next){
     var page = req.query.page ? req.query.page : 1;
     var limit = req.query.limit ? req.query.limit : 10; 
 
-    try{	console.log("all");
+    try{
         var events = await EventService.getEvents({}, page, limit);
         
         // Return the events list with the appropriate HTTP Status Code and Message.

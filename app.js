@@ -7,8 +7,8 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var event = require('./routes/event.route');
-var table = require('./routes/table.route');
+var event = require('./routes/api/event.route');
+var table = require('./routes/api/table.route');
 var api = require('./routes/api.route');
 
 var bluebird = require('bluebird');
