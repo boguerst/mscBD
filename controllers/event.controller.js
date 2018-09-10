@@ -30,11 +30,13 @@ exports.getEventsBy = async function(req, res, next){
 
     try{
         var params = {};
-        if(req.params.ownerId)
+        if(req.params.ownerId) {
             params.owner = req.params.ownerId;
-        if(req.params.byId)
+        }
+        if(req.params.byId) {
             params.by = req.params.byId;
-	console.log("owner : " + req.params.ownerId);
+        }
+
         var events = await EventService.getEvents(params, page, limit);
         
         // Return the events list with the appropriate HTTP Status Code and Message.
