@@ -5,7 +5,8 @@ var TableSchema = new mongoose.Schema({
 	key: Number,
 	category: String,
     name: String,
-    loc: String
+    loc: String,
+    evtId: String
 });
 
 TableSchema.plugin(mongoosePaginate);

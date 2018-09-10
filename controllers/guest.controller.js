@@ -39,7 +39,6 @@ exports.getGuest = async function(req, res, next){
 exports.createGuest = async function(req, res, next){
     // Req.Body contains the form submit values.
     var guest = req.body;
-
     try{
         // Calling the Service function with the new object from the Request Body
         var createdGuest = await GuestService.createGuest(guest);
@@ -56,19 +55,7 @@ exports.updateGuest = async function(req, res, next){
         return res.status(400).json("Id must be present");
     }
 
-    var id = req.body._id;
-    /*var guest = {
-        id,
-        name: req.body.name || null,
-        firstName: req.body.firstName || null,
-        position: req.body.position || null,
-        phoneNumber: req.body.phoneNumber || null,
-        email: req.body.email || null,
-        address: req.body.address || null,
-        comment: req.body.comment || null
-    };*/
     var guest = req.body;
-
     try{
         var updatedGuest = await GuestService.updateGuest(guest);
         return res.json(updatedGuest);
