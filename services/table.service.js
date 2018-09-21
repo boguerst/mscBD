@@ -37,15 +37,6 @@ exports.getTable = async function(id){
 exports.createTable = async function(table){
     // Creating a new Mongoose Object by using the new keyword
     var newTable = new Table(table);
-    /*{
-        roomId: table.roomId,
-        key: table.key,
-        category: table.category,
-        name: table.name,
-        guests: table.guests,
-        loc: table.loc
-    });*/
-
     try{
         // Saving the Table 
         var savedTable = await newTable.save();
@@ -70,16 +61,9 @@ exports.updateTable = async function(table){
         return false;
     }
 
-    //Edit the Table Object
-    oldTable.roomId = table.roomId;
-    oldTable.key = table.key;
-    oldTable.category = table.category;
-    oldTable.name = table.name;
-    oldTable.guests = table.guests;
-    oldTable.loc = table.loc;
     try{
-        var savedTable = await oldTable.save();
-        return savedTable;
+        var updatedTable = new Table(table)
+        return await Table.update({_id: table._id}, updatedTable, {upsert:true});
     }catch(e){
         throw Error("And Error occured while updating the table");
     }

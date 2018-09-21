@@ -48,10 +48,10 @@ exports.getTablesBy = async function(req, res, next){
             params.evtId = req.params.evtId;
         }
 
-        var events = await EventService.getEvents(params, page, limit);
+        var tables = await TableService.getTables(params, page, limit);
         
         // Return the events list with the appropriate HTTP Status Code and Message.
-        return res.json(events.docs);
+        return res.json(tables.docs);
         // return res.status(200).json({status: 200, data: events.docs, message: "Succesfully Events Recieved"});
     }catch(e){
         //Return an Error Response Message with Code and the Error Message.
