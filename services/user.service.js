@@ -23,6 +23,17 @@ exports.getUsers = async function(query, page, limit){
     }
 };
 
+// Async function to get the To do List
+exports.getUser = async function(id){
+    // Try Catch the awaited promise to handle the error 
+    try {
+        return await User.findOne({_id: id});
+    } catch (e) {
+        // return a Error message describing the reason 
+        throw Error('Error while finding the user : ' + id);
+    }
+};
+
 exports.login = async function(user){    
     // Try Catch the awaited promise to handle the error 
     try {

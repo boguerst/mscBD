@@ -11,10 +11,10 @@ exports.getTables = async function(req, res, next){
     var limit = req.query.limit ? req.query.limit : 100; 
 
     try{
-        var Tables = await TableService.getTables({}, page, limit);
+        var tables = await TableService.getTables({}, page, limit);
         
         // Return the Tables list with the appropriate HTTP Status Code and Message.
-        return res.json(Tables.docs);
+        return res.json(tables.docs);
         // return res.status(200).json({status: 200, data: Tables.docs, message: "Succesfully Tables Recieved"});
     }catch(e){
         //Return an Error Response Message with Code and the Error Message.
@@ -28,8 +28,8 @@ exports.getTable = async function(req, res, next){
     var id = req.params.id;
 
     try{
-        var Table = await TableService.getTable(id);
-        return res.json(Table);
+        var table = await TableService.getTable(id);
+        return res.json(table);
     }catch(e){
         //Return an Error Response Message with Code and the Error Message.
         return res.status(204).json(e.message);
@@ -61,10 +61,10 @@ exports.getTablesBy = async function(req, res, next){
 
 exports.createTable = async function(req, res, next){
     // Req.Body contains the form submit values.
-    var Table = req.body;
+    var table = req.body;
     try{
         // Calling the Service function with the new object from the Request Body
-        var createdTable = await TableService.createTable(Table);
+        var createdTable = await TableService.createTable(table);
         return res.json(createdTable);
     }catch(e){        
         //Return an Error Response Message with Code and the Error Message.
@@ -78,9 +78,10 @@ exports.updateTable = async function(req, res, next){
         return res.status(400).json("Id must be present");
     }
 
-    var Table = req.body;
+    var table = req.body;
+    console.log('table updated : '+table.category+' - '+table.loc);
     try{
-        var updatedTable = await TableService.updateTable(Table);
+        var updatedTable = await TableService.updateTable(table);
         return res.json(updatedTable);
     }catch(e){
         return res.status(204).json(e.message);

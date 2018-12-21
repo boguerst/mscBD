@@ -9,6 +9,8 @@ var UserController = require('../../controllers/user.controller');
 // Map each API to the Controller FUnctions
 router.get('/', UserController.getUsers);
 
+router.get('/:id', UserController.getUser);
+
 router.post('/login', UserController.login);
 
 router.post('/', UserController.createUser);

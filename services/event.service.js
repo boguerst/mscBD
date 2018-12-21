@@ -9,7 +9,11 @@ exports.getEvents = async function(query, page, limit){
     // Options setup for the mongoose paginate
     var options = {
         page,
-        limit
+        limit,
+        populate: {
+            path: 'where',
+            select: 'name'
+        }
     };
     
     // Try Catch the awaited promise to handle the error 
@@ -20,6 +24,17 @@ exports.getEvents = async function(query, page, limit){
     } catch (e) {
         // return a Error message describing the reason 
         throw Error('Error while Paginating Events');
+    }
+};
+
+// Async function to get the To do List
+exports.getEvent = async function(id){
+    // Try Catch the awaited promise to handle the error 
+    try {
+        return await Event.findOne({_id: id});
+    } catch (e) {
+        // return a Error message describing the reason 
+        throw Error('Error while finding the event : ' + id);
     }
 };
 

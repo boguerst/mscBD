@@ -35,11 +35,6 @@ exports.getGuest = async function(id){
 exports.createGuest = async function(guest){
     // Creating a new Mongoose Object by using the new keyword
     var newGuest = new Guest(guest);
-    /*{
-        name: guest.name,
-        firstName: guest.firstName,
-        evtId: guest.evtId
-    }*/
     try{
         // Saving the Guest 
         return await newGuest.save();
@@ -63,8 +58,20 @@ exports.updateGuest = async function(guest){
     }
 
     try{
-	var updatedGuest = new Guest(guest)
-	return await Guest.update({_id: guest._id}, updatedGuest, {upsert:true});
+        //Edit the Table Object
+        oldGuest.title = guest.title;
+        oldGuest.name = guest.name;
+        oldGuest.firstName = guest.firstName;
+        oldGuest.phoneNumber = guest.phoneNumber;
+        oldGuest.email = guest.email;
+        oldGuest.address = guest.address;
+        oldGuest.comment = guest.comment;
+        oldGuest.evtId = guest.evtId;
+        oldGuest.table = guest.table ? guest.table : null;
+        oldGuest.seat = guest.seat ? guest.seat : null;
+        oldGuest.loc = guest.loc ? guest.loc : null;
+
+    	return await Guest.update({_id: guest._id}, oldGuest, {upsert:true});
     }catch(e){
         throw Error("And Error occured while updating the Guest");
     }

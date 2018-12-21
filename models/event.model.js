@@ -1,5 +1,5 @@
-var mongoose = require('mongoose')
-var mongoosePaginate = require('mongoose-paginate')
+var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
 
 var EventSchema = new mongoose.Schema({
@@ -9,12 +9,13 @@ var EventSchema = new mongoose.Schema({
     guestNumber: Number,
     by: String,
     owner: String,
-    where: String,
+    // where: String,
+    where: {type: mongoose.Schema.Types.ObjectId, ref: 'Room'},
     creationDate: Date,
     bookerEmail: String
-})
+});
 
-EventSchema.plugin(mongoosePaginate)
-const Event = mongoose.model('Event', EventSchema)
+EventSchema.plugin(mongoosePaginate);
+const Event = mongoose.model('Event', EventSchema);
 
 module.exports = Event;

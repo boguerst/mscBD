@@ -51,7 +51,6 @@ exports.updateTable = async function(table){
     try{
         //Find the old Table Object by the Id
         var oldTable = await Table.findById(table._id);
-        return oldTable;
     }catch(e){
         throw Error("Error occured while Finding the Table");
     }

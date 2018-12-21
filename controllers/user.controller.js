@@ -22,6 +22,20 @@ exports.getUsers = async function(req, res, next){
     }
 };
 
+// Async Controller function to get the To do List
+exports.getUser = async function(req, res, next){
+    // Check the existence of the query parameters, If the exists doesn't exists assign a default value
+    var id = req.params.id;
+
+    try{
+        var user = await UserService.getUser(id);
+        return res.json(user);
+    }catch(e){
+        //Return an Error Response Message with Code and the Error Message.
+        return res.status(204).json(e.message);
+    }
+};
+
 exports.login = async function(req, res, next){
     console.log("req body : ", req.body);
     var user = {
